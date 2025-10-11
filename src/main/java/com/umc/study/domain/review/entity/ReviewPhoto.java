@@ -1,29 +1,32 @@
-package com.umc.entity;
+package com.umc.study.domain.review.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "review_images")
-@Getter @Setter
-public class ReviewImage {
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "review_photo")
+public class ReviewPhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_photo_id")
     private Long id;
+
+    @Column(name = "photo_url", nullable = false, length = 500)
+    private String photoUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
     private Review review;
-
-    @Column(name = "image_url", nullable = false, length = 500)
-    private String imageUrl;
-
-    @Column(name = "`order`", nullable = false)
-    private Integer order = 0;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
