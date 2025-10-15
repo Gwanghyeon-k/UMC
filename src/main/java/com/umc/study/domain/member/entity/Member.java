@@ -48,11 +48,15 @@ public class Member {
     @Column(length = 191)
     private String email;
 
+    private boolean phoneAuth;
+
     @Column(length = 30)
     private String phone;
 
     @Column(name = "profile_image_url", length = 500)
     private String profileImageUrl;
+
+    private Integer myPoint;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
